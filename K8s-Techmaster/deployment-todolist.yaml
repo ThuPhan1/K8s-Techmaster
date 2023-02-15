@@ -3,20 +3,19 @@ kind: Deployment
 metadata:
   labels:
     app: my-todolist
-    ungdung: app
-  name: app
 spec:
-  replicas: 3
+  replicas: 10
   selector:
     mathlabels:
       app: first-todolist
+  template:
+    metadata:
+      labels:
+        app: first-todolist
     spec:
       containers:
         - name: todolist
           image: harness/todolist-sample:lastest
           resources:
-          limits:
-            memory: "150M"
-            cpu: "100m"
             ports:
               - containerPort: 8080
