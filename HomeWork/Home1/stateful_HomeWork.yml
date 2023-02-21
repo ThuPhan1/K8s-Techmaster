@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: 
+  name: bHomeWork-stateful
+spec:
+  serviceName: "HomeWork-stateful"
+  replicas: 3
+  selector:
+    matchLabels: 
+      app: HomeWork-stateful
+  template:
+    metadata:
+      labels:
+        app: HomeWork-stateful
+    spec:
+      volumes:
+      - name: HomeWork-stateful-volume
+        persistentVolumeClaim:
+          claimName: HomeWork-stateful
+      containers:
+      - name: HomeWork-stateful
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - name: HomeWork-stateful-volume
+            mountPath: "/usr/share/nginx/html" 

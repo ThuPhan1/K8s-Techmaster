@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: webapp-btvn
+spec:
+  selector: 
+    matchLabels:
+      app: webapp-v1
+  template:
+    metadata:
+      labels:
+        app: webapp-v1
+    spec:
+      containers:
+        - name: webapp-v1
+          image: nginx:latest
+          ports:
+          - containerPort: 8080
+  replicas: 3

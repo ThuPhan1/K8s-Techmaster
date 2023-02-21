@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-statefulset
+spec: 
+  serviceName: statefulset-service
+  replicas: 4
+  selector: 
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: harness/webapp-sample:latest
+        ports:
+        - containerPort: 8080
